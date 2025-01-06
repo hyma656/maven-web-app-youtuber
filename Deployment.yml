@@ -2,36 +2,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: koti-deployment
+  name: koti-deployment
 spec:
- replicas: 1
- strategy: 
+  replicas: 1
+  strategy: 
     type: Recreate
- selector: 
-   matchLabels: 
-     app: koti-koti
- template:
-  metadata:
-   name: koti-kotipod
-   labels:
-     app: koti-koti	 
-  spec: 
-    containers:
-    - name: koti-koti
-      image: ramki1027/myimage1
-      imagePullPolicy: Always
-      ports:
-      - containerPort: 8080
+  selector: 
+    matchLabels: 
+      app: koti-koti
+  template:
+    metadata:
+      name: koti-kotipod
+      labels:
+        app: koti-koti
+    spec: 
+      containers:
+      - name: koti-koti
+        image: ramki1027/myimage1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
- name: koti-service
+  name: koti-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
-   app: koti-koti
+    app: koti-koti
   ports:
-   - port: 8080
-     targetPort: 80
-...
+    - port: 8080
+      targetPort: 8080  # Changed from 80 to 8080
+      nodePort: 30080    # Optional: Define the nodePort explicitly, or Kubernetes will auto-assign
