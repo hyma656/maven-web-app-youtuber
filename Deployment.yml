@@ -18,7 +18,7 @@ spec:
   spec: 
     containers:
     - name: koti-koti
-      image: koteswarararaosairi/kk:v6
+      image: ramki1027/myimage1
       imagePullPolicy: Always
       ports:
       - containerPort: 8080
