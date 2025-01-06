@@ -28,7 +28,7 @@ kind: Service
 metadata:
  name: koti-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
    app: koti-koti
   ports:
